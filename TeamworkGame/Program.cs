@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TeamworkGame.Items;
 
 namespace TeamworkGame
 {
@@ -17,6 +18,9 @@ namespace TeamworkGame
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new GameWindow());
+            
+
+            
         }
     }
 }
