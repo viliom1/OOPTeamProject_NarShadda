@@ -9,6 +9,10 @@ namespace TeamworkGame
 {
     class Game
     {
+        //constants 
+        public const int GameHeight = 700;
+        public const int GameWidth = 1200;
+        //members
         private GEngine gEngine;
         internal void StartGraphics(Graphics g)
         {

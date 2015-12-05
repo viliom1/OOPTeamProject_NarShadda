@@ -29,14 +29,18 @@ namespace TeamworkGame
         {
             int framesRendered = 0;
             long startTime = Environment.TickCount;
-            
 
+            Bitmap frame = new Bitmap(Game.GameWidth, Game.GameHeight);
+            Graphics gFrame = Graphics.FromImage(frame);
 
 
             while(true)
             {
-                drawHandle.FillRectangle(new SolidBrush(Color.Aqua),0,0,1200,700);
+                gFrame.FillRectangle(new SolidBrush(Color.Aqua),0,0,Game.GameWidth,Game.GameHeight);
+                Bitmap stick = TeamworkGame.Resource1.black_stick_man_hi;
+                gFrame.DrawImage(stick, 600, 200);
 
+                drawHandle.DrawImage(frame, 0, 0);
 
                 //Debug
                 framesRendered++;
