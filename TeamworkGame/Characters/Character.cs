@@ -14,31 +14,35 @@ namespace TeamworkGame
         private int[] position; // position[0] for X axis and position[1] for Y axis
         private int health; // holds the current health of character
         private int moveSpeed; // holds the momevemnt speed of the character
+        private int attackPower; // hold the attack power of the character
 
+        //Constructor
 
-
-        public Character(Bitmap[] animation, int[] position,int moveSpeedint ,int health = 500)
+        public Character( int[] position, int moveSpeed,
+            int health = 500, int attackPower = 30)
         {
-            this.Animation = animation;
+            
             this.Position = position;
             this.Health = health;
             this.MoveSpeed = moveSpeed;
         }
 
+
+        //Props
         public Bitmap[] Animation
         {
             get { return this.animation; }
-            private set 
-            {this.animation = value;}
+            protected set
+            { this.animation = value; }
 
         }
 
         public int[] Position
         {
-            get { return this.position;}
+            get { return this.position; }
             set
             {
-                if (value[0]< 0 || value[1] < 0)
+                if (value[0] < 0 || value[1] < 0)
                 {
                     throw new ArgumentOutOfRangeException("Char position cannot be below zero");
                 }

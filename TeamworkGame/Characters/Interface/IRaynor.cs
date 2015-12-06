@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace TeamworkGame.Characters
 {
-    class IRaynor
+    interface IRaynor
     {
+        void Shoot();
+        void PenetratingRound();
+
     }
 }
