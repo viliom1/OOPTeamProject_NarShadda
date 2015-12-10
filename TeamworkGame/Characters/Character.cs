@@ -18,7 +18,7 @@ namespace TeamworkGame
 
         //Constructor
 
-        public Character( int[] position, int moveSpeed,
+        public Character( int[] position, int moveSpeed = 5,
             int health = 500, int attackPower = 30)
         {
             

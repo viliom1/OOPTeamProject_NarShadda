@@ -1,11 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Threading;
 using System.Drawing;
-using TeamworkGame.Characters;
+
 
 namespace TeamworkGame
 {
@@ -29,101 +25,66 @@ namespace TeamworkGame
         private void Render()
         {
             bool isRight = true;
+            bool isMovement = false;
             int framesRendered = 0;
             long startTime = Environment.TickCount;
             long aniStartTime = Environment.TickCount;
-            Raynor Raynor = new Raynor(new int[2] { 200, 200 });
+            int lastPos = Game.Character.Position[0];
+            int steps = 0;
 
             Bitmap frame = new Bitmap(Game.GameWidth, Game.GameHeight);
             Graphics gFrame = Graphics.FromImage(frame);
-
-            Bitmap[] ani = new Bitmap[2];
-                ani[0] = TeamworkGame.Resource1._1;
-                ani[1] = TeamworkGame.Resource1._2;
-                bool isFirst = true;
+            
+            
+            bool isFirst = true;
             while(true)
             {
-                gFrame.FillRectangle(new SolidBrush(Color.Aqua),0,0,Game.GameWidth,Game.GameHeight);
-                if (isRight)
+                
+                gFrame.DrawImage(Resource1.Background, 0, 0, Game.GameWidth, Game.GameHeight);
+                isMovement = true;
+                if (Game.Character.Position[0] == lastPos)
                 {
-                    if (isFirst)
-                    {
-                        gFrame.DrawImage(Raynor.Animation[0], Raynor.Position[0], Raynor.Position[1]);
-
-                        if (Raynor.Position[0] + 5 < 1000)
-                        {
-                            Raynor.MoveRight();
-                        }
-
-                        if (Environment.TickCount >= aniStartTime + 200)
-                        {
-                            isFirst = false;
-                            aniStartTime = Environment.TickCount;
-
-                        }
-
-                    }
-                    else
-                    {
-                        gFrame.DrawImage(Raynor.Animation[1], Raynor.Position[0], Raynor.Position[1]);
-                        if (Raynor.Position[0] < 1000)
-                        {
-                            Raynor.MoveRight();
-                        }
-                        if (Environment.TickCount >= aniStartTime + 200)
-                        {
-                            isFirst = true;
-                            aniStartTime = Environment.TickCount;
-
-                        }
-                    }
-                    if (Raynor.Position[0] == 1000)
-                    {
-                        isRight = false;
-                    }
-                }
-
-                else
-                {
-                    if (isFirst)
-                    {
-                        gFrame.DrawImage(Raynor.Animation[0], Raynor.Position[0], Raynor.Position[1]);
-
-                        if (Raynor.Position[0] - 5 >= 0)
-                        {
-                            Raynor.MoveLeft();
-                        }
-
-                        if (Environment.TickCount >= aniStartTime + 200)
-                        {
-                            isFirst = false;
-                            aniStartTime = Environment.TickCount;
-
-                        }
-                        
-
-                    }
-                    else
-                    {
-                        gFrame.DrawImage(Raynor.Animation[1], Raynor.Position[0], Raynor.Position[1]);
-                        if (Raynor.Position[0]  - 5>= 0)
-                        {
-                            Raynor.MoveLeft() ;
-                        }
-                        if (Environment.TickCount >= aniStartTime + 200)
-                        {
-                            isFirst = true;
-                            aniStartTime = Environment.TickCount;
-
-                        }
-                    }
-                    if (Raynor.Position[0] == 0)
-                    {
-                        isRight = true;
-                    }
+                    isMovement = false;
+                    steps = 0;
                 }
                 
-
+                if (!isMovement)
+                {
+                    gFrame.DrawImage
+                        (Game.Character.Animation[0],Game.Character.Position[0],Game.Character.Position[1]);
+                }
+                else
+                {
+                    if (steps == 0)
+                    {
+                        isFirst = false;
+                    }
+                    if (isFirst)
+                    {
+                        gFrame.DrawImage(Game.Character.Animation[0],
+                            Game.Character.Position[0],Game.Character.Position[1]);
+                        if (Environment.TickCount >= aniStartTime + 220)
+                        {
+                            isFirst = false;
+                            aniStartTime = Environment.TickCount;
+                            steps++;
+                        }
+                    }
+                    else
+                    {
+                        gFrame.DrawImage(Game.Character.Animation[1],
+                            Game.Character.Position[0], Game.Character.Position[1]);
+                        if (Environment.TickCount >= aniStartTime + 220)
+                        {
+                            isFirst = true;
+                            aniStartTime = Environment.TickCount;
+                            steps++;
+                        }
+                    }
+                    
+                }
+                lastPos = Game.Character.Position[0];
+               
                 drawHandle.DrawImage(frame, 0, 0);
 
                 //Debug
@@ -141,8 +102,6 @@ namespace TeamworkGame
         {
             this.renderthread.Abort();
         }
-
-
 
     }
 }
