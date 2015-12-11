@@ -91,7 +91,7 @@ namespace TeamworkGame
         {
             for (int i = 0; i < Bullets.Count; i++)
             {
-                if (Bullets[i].Position[0] + Bullets[i].Speed >= 1200)
+                if (Bullets[i].Position[0]  - Character.Position[0] >= 500)
                 {
                     Bullets.Remove(Bullets[i]);
                     i--;
