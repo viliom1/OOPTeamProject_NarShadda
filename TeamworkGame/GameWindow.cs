@@ -48,6 +48,8 @@ namespace TeamworkGame
                 case "a":
                     Game.MoveLeft();
                     break;
+                case "k": Game.Attack();
+                    break;
             }
 
         }

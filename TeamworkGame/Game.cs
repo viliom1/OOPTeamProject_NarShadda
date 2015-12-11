@@ -17,12 +17,12 @@ namespace TeamworkGame
         //members
         private static GEngine gEngine;
         public static  PlayableChar Character { get; private set; }
+        public static List<Bullet> Bullets = new List<Bullet>(); 
         internal static void StartGraphics(Graphics g)
         {
             Character = new Raynor(new int[]{100,350});
             gEngine = new GEngine(g);
             gEngine.Initialize();
-
         }
         
         public static  void GameStop()
@@ -41,8 +41,27 @@ namespace TeamworkGame
         }
         public static void ChooseHero()
         {
-            
+            throw new NotImplementedException();
+        }   
+        public static void Attack()
+        {
+            Character.Attack();
         }
-        
+
+        public static void BullteUpdate()
+        {
+            for (int i = 0; i < Bullets.Count; i++)
+            {
+                if (Bullets[i].Position[0] + Bullets[i].Speed >= 1200)
+                {
+                    Bullets.Remove(Bullets[i]);
+                    i--;
+                }
+                else
+                {
+                    Bullets[i].Position[0] += Bullets[i].Speed;
+                }
+            }
+        }
     }
 }

@@ -37,12 +37,25 @@ namespace TeamworkGame.Characters
 
         public void MoveLeft()
         {
-            this.Position[0] -= 5;
+            if (this.Position[0] - this.MoveSpeed > 0)
+            {
+                this.Position[0] -= this.MoveSpeed;
+
+            }
         }
 
         public void MoveRight()
         {
-            this.Position[0] += 5;
+            if (this.Position[0] + this.MoveSpeed < 1000 )
+            {
+                this.Position[0] += this.MoveSpeed;
+            }
+            
+        }
+
+        public virtual void Attack()
+        {
+            
         }
 
         public void Jump()

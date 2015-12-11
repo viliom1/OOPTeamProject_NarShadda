@@ -1,6 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading;
 using System.Drawing;
+using System.Linq;
+using TeamworkGame.Characters;
 
 
 namespace TeamworkGame
@@ -24,13 +27,16 @@ namespace TeamworkGame
         }
         private void Render()
         {
+            
             bool isRight = true;
             bool isMovement = false;
             int framesRendered = 0;
+            long moveStart = Environment.TickCount;
             long startTime = Environment.TickCount;
             long aniStartTime = Environment.TickCount;
             int lastPos = Game.Character.Position[0];
             int steps = 0;
+            
 
             Bitmap frame = new Bitmap(Game.GameWidth, Game.GameHeight);
             Graphics gFrame = Graphics.FromImage(frame);
@@ -41,23 +47,25 @@ namespace TeamworkGame
             {
                 
                 gFrame.DrawImage(Resource1.Background, 0, 0, Game.GameWidth, Game.GameHeight);
-                isMovement = true;
-                if (Game.Character.Position[0] == lastPos)
-                {
-                    isMovement = false;
-                    steps = 0;
-                }
+                
+                
                 
                 if (!isMovement)
                 {
                     gFrame.DrawImage
-                        (Game.Character.Animation[0],Game.Character.Position[0],Game.Character.Position[1]);
+                        (Game.Character.Animation[0],
+                        Game.Character.Position[0],
+                        Game.Character.Position[1]);
+                    if (Environment.TickCount >= aniStartTime + 220)
+                    {
+                        aniStartTime = Environment.TickCount;
+                    }
                 }
                 else
                 {
                     if (steps == 0)
                     {
-                        isFirst = false;
+                        isFirst = false;  
                     }
                     if (isFirst)
                     {
@@ -83,10 +91,32 @@ namespace TeamworkGame
                     }
                     
                 }
-                lastPos = Game.Character.Position[0];
+                
+                
+                if (Game.Bullets.Any())
+                {
+                    Game.BullteUpdate();
+                    foreach (var item in Game.Bullets)
+                    {
+                        gFrame.DrawImage(item.Image,item.Position[0],item.Position[1]);
+                    }
+                }
                
                 drawHandle.DrawImage(frame, 0, 0);
 
+                if (Environment.TickCount >= moveStart + 100)
+                {
+                    moveStart = Environment.TickCount;
+                    if (lastPos == Game.Character.Position[0])
+                    {
+                        isMovement = false;
+                    }
+                    else
+                    {
+                        isMovement = true;
+                    }
+                    lastPos = Game.Character.Position[0];
+                }
                 //Debug
                 framesRendered++;
                 if (Environment.TickCount >= startTime + 1000)
@@ -94,6 +124,7 @@ namespace TeamworkGame
                     Console.WriteLine("GEngine: {0}fps",framesRendered);
                     framesRendered = 0;
                     startTime = Environment.TickCount;
+                    
                 }
 
             }

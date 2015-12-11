@@ -8,7 +8,7 @@ namespace TeamworkGame.Characters
 {
     interface IRaynor
     {
-        void Shoot();
+        void Attack();
         void PenetratingRound();
 
     }
