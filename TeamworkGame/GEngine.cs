@@ -47,7 +47,16 @@ namespace TeamworkGame
             {
                 
                 gFrame.DrawImage(Resource1.Background, 0, 0, Game.GameWidth, Game.GameHeight);
-                
+                foreach (var item in Game.Enemies)
+                {
+                    gFrame.DrawImage(item.GetAnimation(), item.Position[0], item.Position[1]);
+                }
+
+                Game.EnemyAI();
+                foreach (var item in Game.EnemyBullets)
+                {
+                    gFrame.DrawImage(item.Image, item.Position[0], item.Position[1]);
+                }
                 
                 
                 if (!isMovement)
@@ -93,7 +102,7 @@ namespace TeamworkGame
                 }
                 
                 
-                if (Game.Bullets.Any())
+                if (Game.Bullets.Any() || Game.EnemyBullets.Any())
                 {
                     Game.BullteUpdate();
                     foreach (var item in Game.Bullets)

@@ -17,7 +17,7 @@ namespace TeamworkGame.Characters
         public override void  Attack()
         {
             Game.Bullets.Add(new Bullet
-                (new[] { Game.Character.Position[0] + 90, Game.Character.Position[1] + 115 }, 20));
+                (new[] { Game.Character.Position[0] + 90, Game.Character.Position[1] + 115 }, 20, Resource1.bullet));
         }
 
         public void PenetratingRound()

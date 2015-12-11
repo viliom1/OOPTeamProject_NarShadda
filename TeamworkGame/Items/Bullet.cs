@@ -14,12 +14,12 @@ namespace TeamworkGame.Characters
         public int Speed { get; set; }
         public Bitmap Image { get; set; }
 
-        public Bullet(int[] position,int dmg)
+        public Bullet(int[] position,int dmg, Bitmap image)
         {
             this.Position = position;
             this.dmg = dmg;
             this.Speed = 100;
-            this.Image = Resource1.bullet;
+            this.Image = image;
         }
 
         public int[] Position { get; set; }

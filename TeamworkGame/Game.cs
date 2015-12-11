@@ -17,10 +17,14 @@ namespace TeamworkGame
         //members
         private static GEngine gEngine;
         public static  PlayableChar Character { get; private set; }
-        public static List<Bullet> Bullets = new List<Bullet>(); 
+        public static List<Bullet> Bullets = new List<Bullet>();
+        public static List<Enemy> Enemies { get; private set; }
+        public static List<Bullet> EnemyBullets = new List<Bullet>();
         internal static void StartGraphics(Graphics g)
         {
+            Enemies = new List<Enemy>();
             Character = new Raynor(new int[]{100,350});
+            Enemies.Add(new Enemy(new int[] { 1000, 330 }));
             gEngine = new GEngine(g);
             gEngine.Initialize();
         }
@@ -48,6 +52,41 @@ namespace TeamworkGame
             Character.Attack();
         }
 
+        public static void AddEnemy(int[] position)
+        {
+            Enemies.Add(new Enemy(position));
+
+        }
+
+        public static void EnemyAI()
+        {
+            foreach (var item in Enemies)
+            {
+                if (item.Position[0] - Character.Position[0] <= 450)
+                {
+                    item.Attack();
+                }
+                else if (item.Position[0] - Character.Position[0] >= 700)
+                {    
+                }
+                else
+                {
+                    item.MoveLeft();
+                }
+            }
+        }
+
+        public static void EnemyIsDead()
+        {
+            foreach (var item in Enemies)
+            {
+                if (item.Health <= 0)
+                {
+                    Enemies.Remove(item);
+                }
+            }
+        }
+
         public static void BullteUpdate()
         {
             for (int i = 0; i < Bullets.Count; i++)
@@ -62,6 +101,20 @@ namespace TeamworkGame
                     Bullets[i].Position[0] += Bullets[i].Speed;
                 }
             }
+            for (int i = 0; i < EnemyBullets.Count; i++)
+            {
+                if (EnemyBullets[i].Position[0] - EnemyBullets[i].Speed <= 0)
+                {
+                    EnemyBullets.Remove(EnemyBullets[i]);
+                    i--;
+                }
+                else
+                {
+                    EnemyBullets[i].Position[0] -= EnemyBullets[i].Speed;
+                }
+            }
+
+            
         }
     }
 }
