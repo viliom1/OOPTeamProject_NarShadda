@@ -8,6 +8,6 @@ namespace TeamworkGame.Characters
 {
     interface ICollidable
     {
-         bool IsColliding();
+        void Collide(int dmg);
     }
 }

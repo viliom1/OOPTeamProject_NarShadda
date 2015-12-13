@@ -54,10 +54,7 @@ namespace TeamworkGame
             get { return this.health; }
             set
             {
-                if (value <= 0)
-                {
-                    throw new ArgumentOutOfRangeException("Char health cannot be below  zero or zero!");
-                }
+                
                 this.health = value;
             }
         }

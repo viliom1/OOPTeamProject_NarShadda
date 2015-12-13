@@ -62,17 +62,21 @@ namespace TeamworkGame
         {
             foreach (var item in Enemies)
             {
-                if (item.Position[0] - Character.Position[0] <= 450)
+                if (!item.IsDead)
                 {
-                    item.Attack();
+                    if (item.Position[0] - Character.Position[0] <= 450)
+                    {
+                        item.Attack();
+                    }
+                    else if (item.Position[0] - Character.Position[0] >= 700)
+                    {
+                    }
+                    else
+                    {
+                        item.MoveLeft();
+                    } 
                 }
-                else if (item.Position[0] - Character.Position[0] >= 700)
-                {    
-                }
-                else
-                {
-                    item.MoveLeft();
-                }
+                
             }
         }
 
@@ -91,6 +95,22 @@ namespace TeamworkGame
         {
             for (int i = 0; i < Bullets.Count; i++)
             {
+                bool isHit = false;
+                for (int j = 0; j < Enemies.Count; j++)
+                {
+                    if (Bullets[i].Position[0] + Bullets[i].Speed >= Enemies[j].Position[0])
+                    {
+                        Enemies[i].Collide(Bullets[i].Dmg);
+                        Bullets.Remove(Bullets[i]);
+                        i--;
+                        isHit = true;
+                        break;
+                    }
+                }
+                if (isHit)
+                {
+                    continue;
+                }
                 if (Bullets[i].Position[0]  - Character.Position[0] >= 500)
                 {
                     Bullets.Remove(Bullets[i]);

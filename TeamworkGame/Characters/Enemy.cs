@@ -4,7 +4,7 @@ using System.Drawing;
 
 namespace TeamworkGame.Characters
 {
-    class Enemy : Character, IMovable
+    class Enemy : Character, IMovable,ICollidable
     {
         //Fields
         private int goldToDrop;
@@ -12,14 +12,21 @@ namespace TeamworkGame.Characters
         private long animationStart;
         private bool isFirst = true;
         private int lastPosition;
+        private bool isDead = false;
         //Constructor
         public Enemy(int[] position)
-            :base( position, 5, 100, 10)
+            :base( position,5,10,10)
         {
             this.Animation = new Bitmap[2]{ Resource1.FrogMan1,Resource1.FrogMan2 };
             this.lastAttack = Environment.TickCount;
             this.animationStart = Environment.TickCount;
             this.lastPosition = this.Position[0];
+        }
+
+        public bool IsDead
+        {
+            get { return this.isDead; }
+            set { this.isDead = value; }
         }
         //Methods
         public void Attack()
@@ -57,6 +64,10 @@ namespace TeamworkGame.Characters
         }
         public Bitmap GetAnimation()
         {
+            if (isDead)
+            {
+                return Resource1.Untitled;
+            }
             bool isMoving = lastPosition == this.Position[0];
             if (isMoving)
 	        {
@@ -86,6 +97,24 @@ namespace TeamworkGame.Characters
             }
             
 
+        }
+
+        public void Collide(int dmg)
+        {
+            if (this.Health - dmg <= 0)
+            {
+                this.Health -= dmg;
+                IsDead = true;
+            }
+            else
+            {
+                this.Health -= dmg;
+            }
+        }
+
+        public override string ToString()
+        {
+            return string.Format("{0} health left", this.Health);
         }
     }
 }

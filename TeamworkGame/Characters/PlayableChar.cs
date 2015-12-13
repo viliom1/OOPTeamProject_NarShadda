@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 
 
 namespace TeamworkGame.Characters
@@ -8,11 +9,17 @@ namespace TeamworkGame.Characters
         //Fields
         private int gold; // hold the current state of gold
         // private Item[] inventory = new Item[10];
+        private bool isFirst;
+        private long animationStart;
+        private int lastPosition;
 
         //Constructor
         public PlayableChar( int[] position, int health, int moveSpeed)
             : base(position, health, moveSpeed)
         {
+            this.isFirst = true;
+            this.animationStart = Environment.TickCount;
+            this.lastPosition = this.Position[0];
         }
         //Members
         public int Gold
@@ -71,6 +78,43 @@ namespace TeamworkGame.Characters
             throw new NotImplementedException();
         }
         public void Unequip()
+        {
+            throw new NotImplementedException();
+        }
+        public Bitmap GetAnimation()
+        {
+            bool isMoving = lastPosition == this.Position[0];
+            if (isMoving)
+            {
+                return this.Animation[0];
+            }
+            else
+            {
+                this.lastPosition = this.Position[0];
+                if (this.isFirst)
+                {
+                    if (Environment.TickCount >= animationStart + 220)
+                    {
+                        this.isFirst = false;
+                        this.animationStart = Environment.TickCount;
+                    }
+                    return this.Animation[0];
+                }
+                else
+                {
+                    if (Environment.TickCount >= animationStart + 220)
+                    {
+                        this.isFirst = true;
+                        this.animationStart = Environment.TickCount;
+                    }
+                    return this.Animation[1];
+                }
+            }
+
+
+        }
+
+        public void Collide(int dmg)
         {
             throw new NotImplementedException();
         }

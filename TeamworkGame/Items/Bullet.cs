@@ -17,7 +17,7 @@ namespace TeamworkGame.Characters
         public Bullet(int[] position,int dmg, Bitmap image)
         {
             this.Position = position;
-            this.dmg = dmg;
+            this.Dmg = dmg;
             this.Speed = 100;
             this.Image = image;
         }
