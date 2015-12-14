@@ -8,10 +8,12 @@ namespace TeamworkGame.Characters
         //Fields
         private string name;
         private string quest;
+        public bool Interaction { get; private set; }
         //Constructor
         public QuestGiver(System.Drawing.Bitmap[] animation, int[] position)
             : base( position, 0, 500, 0)
         {
+            this.Interaction = false;
         }
         //Members
         public string Name
@@ -39,9 +41,16 @@ namespace TeamworkGame.Characters
             }
         }
         //Methods
-        public void Talk()
+        public void Interact()
         {
-            throw new NotImplementedException();
+            if (!Interaction)
+            {
+                Interaction = true;
+            }
+            else
+            {
+                Interaction = false;
+            }
         }
     }
 }

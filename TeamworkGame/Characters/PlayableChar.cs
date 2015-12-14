@@ -12,6 +12,7 @@ namespace TeamworkGame.Characters
         private bool isFirst;
         private long animationStart;
         private int lastPosition;
+        public bool IsDead { get; private set; }
 
         //Constructor
         public PlayableChar( int[] position, int health, int moveSpeed)
@@ -34,7 +35,7 @@ namespace TeamworkGame.Characters
                 this.gold = value;
             }
         }
-
+        
 
         //Methods
         public bool IsColliding()
@@ -116,7 +117,15 @@ namespace TeamworkGame.Characters
 
         public void Collide(int dmg)
         {
-            throw new NotImplementedException();
+            if (Health - dmg > 0)
+            {
+                Health -= dmg;
+            }
+            else
+            {
+                Health -= dmg;
+                IsDead = true;
+            }
         }
     }
 }

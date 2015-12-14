@@ -35,6 +35,7 @@ namespace TeamworkGame
             long aniStartTime = Environment.TickCount;
             int lastPos = Game.Character.Position[0];
             int steps = 0;
+            Game.LoadScene(0);
             
 
             Bitmap frame = new Bitmap(Game.GameWidth, Game.GameHeight);
@@ -45,7 +46,8 @@ namespace TeamworkGame
             while(true)
             {
                 
-                gFrame.DrawImage(Resource1.Background, 0, 0, Game.GameWidth, Game.GameHeight);
+                gFrame.DrawImage(Game.Background, 0, 0, Game.GameWidth, Game.GameHeight);
+                
                 foreach (var item in Game.Enemies)
                 {
                     gFrame.DrawImage(item.GetAnimation(), item.Position[0], item.Position[1]);
@@ -57,9 +59,19 @@ namespace TeamworkGame
                     gFrame.DrawImage(item.Image, item.Position[0], item.Position[1]);
                 }
                 
-                gFrame.DrawImage
-                    (Game.Character.GetAnimation(),Game.Character.Position[0],Game.Character.Position[1]);
                 
+                if (Game.QuestGiver != null)
+                {
+                    gFrame.DrawImage(Resource1.Quest,Game.QuestGiver.Position[0],Game.QuestGiver.Position[1]);
+                }
+                gFrame.DrawImage
+                    (Game.Character.GetAnimation(), Game.Character.Position[0], Game.Character.Position[1]);
+                Game.InteractionUpdate();
+                if (Game.QuestGiver.Interaction)
+                {
+                    gFrame.DrawString(Game.QuestGiver.Quest,new Font(FontFamily.GenericSansSerif, 25,FontStyle.Italic),
+                       new SolidBrush(Color.Gold) , Game.QuestGiver.Position[0],Game.QuestGiver.Position[1] -50  );
+                }
                 
                 if (Game.Bullets.Any() || Game.EnemyBullets.Any())
                 {
@@ -71,7 +83,11 @@ namespace TeamworkGame
                 }
                
                 drawHandle.DrawImage(frame, 0, 0);
-
+                if (Game.Character.IsDead)
+                {
+                    gFrame.DrawImage(Resource1.game_over,Game.GameWidth/2-150,Game.GameHeight/2);
+                    break;
+                }
                
                 
                 //Debug
@@ -81,13 +97,17 @@ namespace TeamworkGame
                     Console.WriteLine("GEngine: {0}fps",framesRendered);
                     framesRendered = 0;
                     startTime = Environment.TickCount;
+                    Console.WriteLine("Game: Character health: " + Game.Character.Health);
                     foreach (var item in Game.Enemies)
                     {
-                        Console.WriteLine(item);
+                        Console.WriteLine("Game: " + item);
                     }
-                    
                 }
 
+            }
+            while (true)
+            {
+                drawHandle.DrawImage(frame,0,0);
             }
         }
         public void Stop()

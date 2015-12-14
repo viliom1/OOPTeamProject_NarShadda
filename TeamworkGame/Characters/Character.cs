@@ -7,7 +7,7 @@ using System.Drawing;
 
 namespace TeamworkGame
 {
-    abstract class Character
+    public abstract class Character
     {
         //Fields
         private Bitmap[] animation; // all frames from the animation

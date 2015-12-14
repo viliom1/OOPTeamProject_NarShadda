@@ -4,7 +4,7 @@ using System.Drawing;
 
 namespace TeamworkGame.Characters
 {
-    class Enemy : Character, IMovable,ICollidable
+    public class Enemy : Character, IMovable,ICollidable
     {
         //Fields
         private int goldToDrop;

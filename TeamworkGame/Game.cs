@@ -15,8 +15,12 @@ namespace TeamworkGame
         public const int GameHeight = 700;
         public const int GameWidth = 1200;
         //members
+        private static int currentScene = 0;
         private static GEngine gEngine;
+        public static Bitmap Background { get; private set; }
         public static  PlayableChar Character { get; private set; }
+        public static QuestGiver QuestGiver { get; private set; }
+        public static Vendor Vendor { get; private set; }
         public static List<Bullet> Bullets = new List<Bullet>();
         public static List<Enemy> Enemies { get; private set; }
         public static List<Bullet> EnemyBullets = new List<Bullet>();
@@ -24,7 +28,7 @@ namespace TeamworkGame
         {
             Enemies = new List<Enemy>();
             Character = new Raynor(new int[]{100,350});
-            Enemies.Add(new Enemy(new int[] { 1000, 330 }));
+            //Enemies.Add(new Enemy(new int[] { 1000, 330 }));
             gEngine = new GEngine(g);
             gEngine.Initialize();
         }
@@ -32,6 +36,20 @@ namespace TeamworkGame
         public static  void GameStop()
         {
             gEngine.Stop();
+        }
+
+        public static void LoadScene(int sceneNumber)
+        {
+            switch (sceneNumber)
+            {
+                case 0:
+                    Character = new Raynor(new int[]{100,350});
+                    QuestGiver = new QuestGiver(new Bitmap[]{Resource1.Quest},new int[]{600,350});
+                    Background = Resource1.Background;
+                    QuestGiver.Quest = "Raynor, sir!";
+
+                    break;
+            }
         }
 
         public static void  MoveRight()
@@ -91,6 +109,17 @@ namespace TeamworkGame
             }
         }
 
+        public static void InteractionUpdate()
+        {
+            if (QuestGiver.Interaction)
+            {
+                if (Character.Position[0] - QuestGiver.Position[0] > 200 
+                    || QuestGiver.Position[0] - Character.Position[0] > 200) 
+                {
+                    QuestGiver.Interact();
+                }
+            }
+        }
         public static void BullteUpdate()
         {
             for (int i = 0; i < Bullets.Count; i++)
@@ -123,6 +152,19 @@ namespace TeamworkGame
             }
             for (int i = 0; i < EnemyBullets.Count; i++)
             {
+                bool isHit = false;
+                if (EnemyBullets[i].Position[0] - EnemyBullets[i].Speed <= Game.Character.Position[0])
+                {
+                    Game.Character.Collide(EnemyBullets[i].Dmg);
+                    EnemyBullets.Remove(EnemyBullets[i]);
+                    i--;
+                    isHit = true;
+                }
+                if (isHit)
+                {
+                    continue;
+                }
+                
                 if (EnemyBullets[i].Position[0] - EnemyBullets[i].Speed <= 0)
                 {
                     EnemyBullets.Remove(EnemyBullets[i]);
@@ -135,6 +177,11 @@ namespace TeamworkGame
             }
 
             
+        }
+
+        internal static void Interact()
+        {
+
         }
     }
 }

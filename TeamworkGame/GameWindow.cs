@@ -50,6 +50,21 @@ namespace TeamworkGame
                     break;
                 case "k": Game.Attack();
                     break;
+                case "e":
+                    if (Game.QuestGiver != null)
+                    {
+                        if (Game.QuestGiver.Position[0] - Game.Character.Position[0] <= 200)
+                        {
+                            Game.QuestGiver.Interact();
+                        }
+                    }
+                    
+                    //if (Math.Abs(Game.Vendor.Position[0] - Game.Character.Position[0]) <= 100)
+                    //{
+                        
+                    //}
+                    
+                    break;
             }
 
         }
