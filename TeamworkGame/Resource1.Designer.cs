@@ -123,6 +123,46 @@ namespace TeamworkGame {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap FrogMan3 {
+            get {
+                object obj = ResourceManager.GetObject("FrogMan3", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap FrogMan4 {
+            get {
+                object obj = ResourceManager.GetObject("FrogMan4", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap FrogMan5 {
+            get {
+                object obj = ResourceManager.GetObject("FrogMan5", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap FrogMan6 {
+            get {
+                object obj = ResourceManager.GetObject("FrogMan6", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap game_over {
             get {
                 object obj = ResourceManager.GetObject("game_over", resourceCulture);
@@ -136,6 +176,26 @@ namespace TeamworkGame {
         internal static System.Drawing.Bitmap Quest {
             get {
                 object obj = ResourceManager.GetObject("Quest", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap QuestGiver1 {
+            get {
+                object obj = ResourceManager.GetObject("QuestGiver1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Shop1 {
+            get {
+                object obj = ResourceManager.GetObject("Shop1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
