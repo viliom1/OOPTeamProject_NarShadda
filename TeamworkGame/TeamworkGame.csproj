@@ -147,6 +147,63 @@
   <ItemGroup>
     <None Include="Resources\Quest.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\FrogMan3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\FrogMan4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\FrogMan5.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\FrogMan6.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\QuestGiver1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Shop1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\HealthBar0.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\HealthBar10.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\HealthBar20.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\HealthBar30.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\HealthBar40.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\HealthBar50.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\HealthBar60.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\HealthBar70.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\HealthBar80.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\HealthBar90.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\HealthBar100.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Gold1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Inventory.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -8,10 +8,11 @@ namespace TeamworkGame.Characters
     {
         //Constructor
         public Raynor(int[] position)
-            : base( position,500,5)
+            : base(position, 5, 100)
         {
             this.Animation = new Bitmap[2] { new Bitmap(Resource1._1), new Bitmap(Resource1._2) };
             this.MoveSpeed = 5;
+            
         }
         //Methods
         public override void  Attack()

@@ -8,15 +8,15 @@ namespace TeamworkGame.Characters
     {
         //Fields
         private int gold; // hold the current state of gold
-        // private Item[] inventory = new Item[10];
+        // private Item[] inventory = new Item[6];
         private bool isFirst;
         private long animationStart;
         private int lastPosition;
         public bool IsDead { get; private set; }
 
         //Constructor
-        public PlayableChar( int[] position, int health, int moveSpeed)
-            : base(position, health, moveSpeed)
+        public PlayableChar(int[] position, int moveSpeed, int health)
+            : base(position, moveSpeed, health)
         {
             this.isFirst = true;
             this.animationStart = Environment.TickCount;

@@ -62,7 +62,7 @@ namespace TeamworkGame
                 
                 if (Game.QuestGiver != null)
                 {
-                    gFrame.DrawImage(Resource1.Quest,Game.QuestGiver.Position[0],Game.QuestGiver.Position[1]);
+                    gFrame.DrawImage(Resource1.QuestGiver1,Game.QuestGiver.Position[0],Game.QuestGiver.Position[1]);
                 }
                 gFrame.DrawImage
                     (Game.Character.GetAnimation(), Game.Character.Position[0], Game.Character.Position[1]);
@@ -81,7 +81,16 @@ namespace TeamworkGame
                         gFrame.DrawImage(item.Image,item.Position[0],item.Position[1]);
                     }
                 }
-               
+
+                gFrame.DrawImage(Game.GetHealthBar(), 10, 10);
+                gFrame.DrawImage(Resource1.Gold1, 176, 1);
+                gFrame.DrawString(Game.Character.Gold.ToString(), new Font(FontFamily.GenericSansSerif, 25, FontStyle.Bold),
+                    new SolidBrush(Color.Gold), 220f, 5f);
+                if (Game.SeeInventory)
+	            {
+                    gFrame.DrawImage(Resource1.Inventory, 890, 10);
+	            }
+              
                 drawHandle.DrawImage(frame, 0, 0);
                 if (Game.Character.IsDead)
                 {

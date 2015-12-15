@@ -17,6 +17,7 @@ namespace TeamworkGame
         //members
         private static int currentScene = 0;
         private static GEngine gEngine;
+        public static bool SeeInventory { get; private set; }
         public static Bitmap Background { get; private set; }
         public static  PlayableChar Character { get; private set; }
         public static QuestGiver QuestGiver { get; private set; }
@@ -98,6 +99,66 @@ namespace TeamworkGame
             }
         }
 
+        public static Bitmap GetHealthBar()
+        {
+            if (Character.Health > 90)
+            {
+                return Resource1.HealthBar100;
+            }
+            else if (Character.Health > 80 && Character.Health <= 90)
+            {
+                return Resource1.HealthBar90;
+            }
+            else if (Character.Health > 70 && Character.Health <= 80)
+            {
+                return Resource1.HealthBar80;
+            }
+            else if (Character.Health > 60 && Character.Health <= 70)
+            {
+                return Resource1.HealthBar70;
+            }
+            else if (Character.Health > 50 && Character.Health <= 60)
+            {
+                return Resource1.HealthBar60;
+            }
+            else if (Character.Health > 40 && Character.Health <= 50)
+            {
+                return Resource1.HealthBar50;
+            }
+            else if (Character.Health > 30 && Character.Health <= 40)
+            {
+                return Resource1.HealthBar40;
+            }
+            else if (Character.Health > 20 && Character.Health <= 30)
+            {
+                return Resource1.HealthBar30;
+            }
+            else if (Character.Health > 10 && Character.Health <= 20)
+            {
+                return Resource1.HealthBar20;
+            }
+
+            else if (Character.Health > 1 && Character.Health <= 10)
+            {
+                return Resource1.HealthBar10;
+            }
+            else
+            {
+                return Resource1.HealthBar0;
+            }
+        }
+        
+        public static void ShowInventory()
+        {
+            if (SeeInventory)
+            {
+                SeeInventory = false;
+            }
+            else
+            {
+                SeeInventory = true;
+            }
+        }
         public static void EnemyIsDead()
         {
             foreach (var item in Enemies)

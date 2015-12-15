@@ -58,6 +58,7 @@ namespace TeamworkGame
                             Game.QuestGiver.Interact();
                         }
                     }
+
                     
                     //if (Math.Abs(Game.Vendor.Position[0] - Game.Character.Position[0]) <= 100)
                     //{
@@ -65,7 +66,13 @@ namespace TeamworkGame
                     //}
                     
                     break;
+
+                case "i":
+                    Game.ShowInventory();
+                    break;
             }
+
+            
 
         }
     }

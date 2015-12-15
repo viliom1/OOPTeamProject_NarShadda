@@ -166,4 +166,43 @@
   <data name="Shop1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\Shop1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="Gold1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Gold1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="HealthBar0" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\HealthBar0.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="HealthBar10" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\HealthBar10.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="HealthBar100" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\HealthBar100.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="HealthBar20" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\HealthBar20.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="HealthBar30" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\HealthBar30.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="HealthBar40" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\HealthBar40.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="HealthBar50" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\HealthBar50.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="HealthBar60" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\HealthBar60.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="HealthBar70" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\HealthBar70.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="HealthBar80" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\HealthBar80.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="HealthBar90" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\HealthBar90.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Inventory" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Inventory.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>
