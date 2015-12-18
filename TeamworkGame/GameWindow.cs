@@ -48,18 +48,27 @@ namespace TeamworkGame
                 case "a":
                     Game.MoveLeft();
                     break;
+                case "s":
+                    Game.Character.Duck();
+                    break;
                 case "k": Game.Attack();
                     break;
                 case "e":
-                    if (Game.QuestGiver != null)
+                    if (Game.CurrentScene.QuestGiver != null)
                     {
-                        if (Game.QuestGiver.Position[0] - Game.Character.Position[0] <= 200)
+                        if (Game.CurrentScene.QuestGiver.Position[0] - Game.Character.Position[0] <= 200)
                         {
-                            Game.QuestGiver.Interact();
+                            Game.CurrentScene.QuestGiver.Interact();
                         }
                     }
 
-                    
+                    if (Game.CurrentScene.Vendor != null)
+                    {
+                        if (Game.CurrentScene.Vendor.Position[0] - Game.Character.Position[0] <= 200)
+                        {
+                            Game.CurrentScene.Vendor.Interact();
+                        }
+                    }
                     //if (Math.Abs(Game.Vendor.Position[0] - Game.Character.Position[0]) <= 100)
                     //{
                         

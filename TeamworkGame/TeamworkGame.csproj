@@ -45,7 +45,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Items\Bullet.cs" />
     <Compile Include="Characters\Character.cs" />
     <Compile Include="Characters\Enemy.cs" />
     <Compile Include="Characters\Interface\ICollidable.cs" />
@@ -64,22 +63,9 @@
       <DependentUpon>GameWindow.cs</DependentUpon>
     </Compile>
     <Compile Include="GEngine.cs" />
-    <Compile Include="Items\Amulet.cs" />
-    <Compile Include="Items\ArmorPotion.cs" />
-    <Compile Include="Items\HealthPotion.cs" />
-    <Compile Include="Items\HealthRing.cs" />
-    <Compile Include="Items\Interfaces\IDrinkable.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Items\Interfaces\IWearable.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Items\Item.cs" />
-    <Compile Include="Items\Necklace.cs" />
-    <Compile Include="Items\Potion.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Items\PowerRing.cs" />
+    <Compile Include="Item\Bullet.cs" />
+    <Compile Include="Item\IItem.cs" />
+    <Compile Include="Item\RingOfPower.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resource1.Designer.cs">
@@ -87,7 +73,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resource1.resx</DependentUpon>
     </Compile>
-    <Compile Include="Scene\Scene.cs" />
+    <Compile Include="Scene.cs" />
     <EmbeddedResource Include="GameWindow.resx">
       <DependentUpon>GameWindow.cs</DependentUpon>
     </EmbeddedResource>
@@ -139,13 +125,7 @@
     <None Include="Resources\spit.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Untitled.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\game-over.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Quest.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\FrogMan3.png" />
@@ -203,6 +183,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Inventory.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\RaynorSquat.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\RingOfPower.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TeamworkGame.Items
 {
-    class Necklace : Amulet
+    class Necklace 
     {
 
         public Necklace(System.Drawing.Bitmap appearence, int increment )

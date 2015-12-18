@@ -14,6 +14,8 @@ namespace TeamworkGame
         //constants 
         public const int GameHeight = 700;
         public const int GameWidth = 1200;
+        public const int CharStartpositionX = 100;
+        public const int CharStartPositionY = 350;
         //members
         private static int currentScene = 0;
         private static GEngine gEngine;
@@ -25,14 +27,27 @@ namespace TeamworkGame
         public static List<Bullet> Bullets = new List<Bullet>();
         public static List<Enemy> Enemies { get; private set; }
         public static List<Bullet> EnemyBullets = new List<Bullet>();
+        public static Scene []  Scenes { get; private set; }
+        public static Scene CurrentScene { get; private set; }
+        public static int SceneNumber { get; private set; }
+
         internal static void StartGraphics(Graphics g)
         {
             Enemies = new List<Enemy>();
-            Character = new Raynor(new int[]{100,350});
-            //Enemies.Add(new Enemy(new int[] { 1000, 330 }));
+            Scenes = new Scene[5];
+            Character = new Raynor(new int[]{CharStartpositionX,CharStartPositionY});
+            Scenes[0] = Scene.LoadFirstScene();
+            Scenes[1] = Scene.LoadSecondScene();
+            Scenes[2] = Scene.LoadThirdScene();
+            Scenes[3] = Scene.LoadFourthScene();
+            Scenes[4] = Scene.LoadFifthScene();
+            SceneNumber = 0;
+            LoadScene(SceneNumber);
             gEngine = new GEngine(g);
             gEngine.Initialize();
         }
+
+        
         
         public static  void GameStop()
         {
@@ -41,15 +56,26 @@ namespace TeamworkGame
 
         public static void LoadScene(int sceneNumber)
         {
+            Character.Position = new int[] {CharStartpositionX, CharStartPositionY};
+            SceneNumber = sceneNumber;
             switch (sceneNumber)
             {
                 case 0:
-                    Character = new Raynor(new int[]{100,350});
-                    QuestGiver = new QuestGiver(new Bitmap[]{Resource1.Quest},new int[]{600,350});
-                    Background = Resource1.Background;
-                    QuestGiver.Quest = "Raynor, sir!";
-
+                    CurrentScene = Scenes[0];
                     break;
+                case 1:
+                    CurrentScene = Scenes[1];
+                    break;
+                case 2:
+                    CurrentScene = Scenes[2];
+                    break;
+                case 3:
+                    CurrentScene = Scenes[3];
+                    break;
+                case 4 :
+                    CurrentScene = Scenes[4];
+                    break;
+
             }
         }
 
@@ -79,7 +105,7 @@ namespace TeamworkGame
 
         public static void EnemyAI()
         {
-            foreach (var item in Enemies)
+            foreach (var item in CurrentScene.Enemies)
             {
                 if (!item.IsDead)
                 {
@@ -161,36 +187,44 @@ namespace TeamworkGame
         }
         public static void EnemyIsDead()
         {
-            foreach (var item in Enemies)
+            for (int i = 0; i < CurrentScene.Enemies.Count; i++)
             {
-                if (item.Health <= 0)
+                if (CurrentScene.Enemies[i].Health <= 0)
                 {
-                    Enemies.Remove(item);
+                    CurrentScene.DeadEnemies.Add(CurrentScene.Enemies[i]);
+                    Character.CollectGold(CurrentScene.Enemies[i].DropGold());
+                    CurrentScene.Enemies.Remove(CurrentScene.Enemies[i]);
+                    i--;
                 }
             }
+            
         }
 
         public static void InteractionUpdate()
         {
-            if (QuestGiver.Interaction)
+            if (CurrentScene.QuestGiver != null)
             {
-                if (Character.Position[0] - QuestGiver.Position[0] > 200 
-                    || QuestGiver.Position[0] - Character.Position[0] > 200) 
+                if (CurrentScene.QuestGiver.Interaction)
                 {
-                    QuestGiver.Interact();
+                    if (Character.Position[0] - CurrentScene.QuestGiver.Position[0] > 200
+                        || CurrentScene.QuestGiver.Position[0] - Character.Position[0] > 200)
+                    {
+                        CurrentScene.QuestGiver.Interact();
+                    }
                 }
             }
+            
         }
         public static void BullteUpdate()
         {
             for (int i = 0; i < Bullets.Count; i++)
             {
                 bool isHit = false;
-                for (int j = 0; j < Enemies.Count; j++)
+                for (int j = 0; j < CurrentScene.Enemies.Count; j++)
                 {
-                    if (Bullets[i].Position[0] + Bullets[i].Speed >= Enemies[j].Position[0])
+                    if (Bullets[i].Position[0] + Bullets[i].Speed >= CurrentScene.Enemies[j].Position[0])
                     {
-                        Enemies[i].Collide(Bullets[i].Dmg);
+                        CurrentScene.Enemies[i].Collide(Bullets[i].Dmg);
                         Bullets.Remove(Bullets[i]);
                         i--;
                         isHit = true;
@@ -201,7 +235,7 @@ namespace TeamworkGame
                 {
                     continue;
                 }
-                if (Bullets[i].Position[0]  - Character.Position[0] >= 500)
+                if (Bullets[i].Position[0]  - Character.Position[0] >= Character.AttackRange)
                 {
                     Bullets.Remove(Bullets[i]);
                     i--;
@@ -211,16 +245,25 @@ namespace TeamworkGame
                     Bullets[i].Position[0] += Bullets[i].Speed;
                 }
             }
+
+            if (SeeInventory)
+            {
+                
+            }
             for (int i = 0; i < EnemyBullets.Count; i++)
             {
                 bool isHit = false;
-                if (EnemyBullets[i].Position[0] - EnemyBullets[i].Speed <= Game.Character.Position[0])
+                if (!Character.IsDucking)
                 {
-                    Game.Character.Collide(EnemyBullets[i].Dmg);
-                    EnemyBullets.Remove(EnemyBullets[i]);
-                    i--;
-                    isHit = true;
+                    if (EnemyBullets[i].Position[0] - EnemyBullets[i].Speed <= Character.Position[0])
+                    {
+                        Character.Collide(EnemyBullets[i].Dmg);
+                        EnemyBullets.Remove(EnemyBullets[i]);
+                        i--;
+                        isHit = true;
+                    }  
                 }
+                
                 if (isHit)
                 {
                     continue;
@@ -240,9 +283,15 @@ namespace TeamworkGame
             
         }
 
-        internal static void Interact()
-        {
 
+
+        internal static void SceneUpdate()
+        {
+            if (Character.Position[0] >= 1000)
+            {
+                currentScene ++;
+                LoadScene(currentScene);
+            }
         }
     }
 }

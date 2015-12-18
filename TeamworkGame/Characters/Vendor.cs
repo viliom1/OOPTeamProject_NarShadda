@@ -1,20 +1,25 @@
 ﻿using System;
 using TeamworkGame.Characters.Interface;
 using System.Drawing;
+using TeamworkGame.Item;
 
 namespace TeamworkGame.Characters
 {
-    class Vendor : Character, ITradable
+    public class Vendor : Character, ITradable
     {
 
         //Fields
-        // private Item[] inventory = new Item[15]; //the stash of the vendor
+        private IItem[] inventory = new IItem[15]; //the stash of the vendor
 
         //Constructor
         public Vendor(Bitmap[] animation, int[] position)
             : base( position, 0, 500, 0)
         {
+            this.Animation = animation;
+            this.Interaction = false;
         }
+        public bool Interaction { get; private set; }
+
         // Methods
         public void Buy()
         {
@@ -25,5 +30,17 @@ namespace TeamworkGame.Characters
             throw new NotImplementedException();
         }
 
+
+        internal void Interact()
+        {
+            if (!Interaction)
+            {
+                Interaction = true;
+            }
+            else
+            {
+                Interaction = false;
+            }
+        }
     }
 }

@@ -303,9 +303,9 @@ namespace TeamworkGame {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Quest {
+        internal static System.Drawing.Bitmap QuestGiver1 {
             get {
-                object obj = ResourceManager.GetObject("Quest", resourceCulture);
+                object obj = ResourceManager.GetObject("QuestGiver1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -313,9 +313,19 @@ namespace TeamworkGame {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap QuestGiver1 {
+        internal static System.Drawing.Bitmap RaynorSquat {
             get {
-                object obj = ResourceManager.GetObject("QuestGiver1", resourceCulture);
+                object obj = ResourceManager.GetObject("RaynorSquat", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap RingOfPower {
+            get {
+                object obj = ResourceManager.GetObject("RingOfPower", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -336,16 +346,6 @@ namespace TeamworkGame {
         internal static System.Drawing.Bitmap spit {
             get {
                 object obj = ResourceManager.GetObject("spit", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Untitled {
-            get {
-                object obj = ResourceManager.GetObject("Untitled", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

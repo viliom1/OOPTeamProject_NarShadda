@@ -3,20 +3,47 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Drawing;
 
 namespace TeamworkGame.Items
 {
-    class PowerRing : Amulet
+     struct PowerRing
     {
-        public PowerRing(System.Drawing.Bitmap appearence) 
-            : base ("Power Ring", 10, appearence)
-        {
+        //Fields
 
+        private string name;
+        private int increment;
+        private Bitmap appearence;
+
+        //Constructor
+         public PowerRing(string name, int increment, Bitmap appearence) : this()
+         {
+             Name = "Power Ring";
+             Increment = 15;
+             Appearence = Resource1.RingOfPower;
+
+         }
+
+         
+
+         //Properties
+         public string Name
+         {
+             get { return this.name; }
+             protected set { this.name = value; }
+         }
+        public int Increment
+        { 
+            get { return this.increment; } 
+            protected set { this.increment = value; }
+        }
+        public Bitmap Appearence 
+        { 
+            get {return  this.appearence;}
+            protected set { this.appearence = value; } 
         }
 
-        public override void Equip()
-        {
-            base.Equip(); // Override to increase character's attack by 10; price 300 gold
-        }
+
+
     }
 }

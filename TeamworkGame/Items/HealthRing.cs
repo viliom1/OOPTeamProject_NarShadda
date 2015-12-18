@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TeamworkGame.Items
 {
-    class HealthRing : Amulet
+    struct HealthRing 
     {
         public HealthRing(System.Drawing.Bitmap appearence) 
             : base ("Health Ring", 100, appearence) 

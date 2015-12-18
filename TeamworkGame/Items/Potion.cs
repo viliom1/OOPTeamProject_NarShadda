@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace TeamworkGame.Items
 {
-    class Potion : Item, IDrinkable
+    class Potion : IDrinkable
     {
         public Potion(string name, int increment, System.Drawing.Bitmap appearence)
             : base(name, increment, appearence)

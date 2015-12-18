@@ -13,6 +13,10 @@ namespace TeamworkGame.Characters
         private bool isFirst = true;
         private int lastPosition;
         private bool isDead = false;
+        private bool firstDead = true;
+        private bool secondDead = false;
+        private bool thirdDead = false;
+        private bool fourthDead = false;
         //Constructor
         public Enemy(int[] position)
             :base( position,5,10,10)
@@ -21,6 +25,9 @@ namespace TeamworkGame.Characters
             this.lastAttack = Environment.TickCount;
             this.animationStart = Environment.TickCount;
             this.lastPosition = this.Position[0];
+            this.goldToDrop = 50;
+            
+            
         }
 
         public bool IsDead
@@ -34,7 +41,7 @@ namespace TeamworkGame.Characters
             if (Environment.TickCount >= lastAttack + 2000)
             {
                 this.lastAttack = Environment.TickCount;
-                Game.EnemyBullets.Add(new Bullet(new[] { this.Position[0] + 20, this.Position[1] + 70}, 20, Resource1.spit));
+                Game.EnemyBullets.Add(new Bullet(new[] { this.Position[0] + 20, this.Position[1] + 70}, this.AttackPower, Resource1.spit));
             }
             
         }
@@ -66,7 +73,64 @@ namespace TeamworkGame.Characters
         {
             if (isDead)
             {
-                return Resource1.Untitled;
+                if (!fourthDead)
+                {
+                    this.Position[1] += 39;
+                }
+                if (Environment.TickCount >= animationStart + 220)
+                {
+                    
+                    this.animationStart = Environment.TickCount;
+                    if (firstDead)
+                    {
+                        firstDead = false;
+                        secondDead = true;
+                        return Resource1.FrogMan3;
+                    }
+                    else if (secondDead)
+                    {
+                        secondDead = false;
+                        thirdDead = true;
+                        
+                        return Resource1.FrogMan4;
+                    }
+                    else if (thirdDead)
+                    {
+                        thirdDead = false;
+                        fourthDead = true;
+                        
+                        return Resource1.FrogMan5;
+                    }
+                    else if (fourthDead)
+                    {
+                        return Resource1.FrogMan6;
+                    }
+                }
+                else
+                {
+                    if (firstDead)
+                    {
+                        firstDead = false;
+                        secondDead = true;
+                        return Resource1.FrogMan3;
+                    }
+                    else if (secondDead)
+                    {
+                        secondDead = false;
+                        thirdDead = true;
+                        return Resource1.FrogMan4;
+                    }
+                    else if (thirdDead)
+                    {
+                        thirdDead = false;
+                        fourthDead = true;
+                        return Resource1.FrogMan5;
+                    }
+                    else if (fourthDead)
+                    {
+                        return Resource1.FrogMan6;
+                    }
+                }
             }
             bool isMoving = lastPosition == this.Position[0];
             if (isMoving)
@@ -109,6 +173,19 @@ namespace TeamworkGame.Characters
             else
             {
                 this.Health -= dmg;
+            }
+        }
+
+        public int DropGold()
+        {
+           Random rnd = new Random();
+            if (rnd.Next(100) <= 10)
+            {
+                return 100;
+            }
+            else
+            {
+                return 50;
             }
         }
 

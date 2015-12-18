@@ -19,6 +19,7 @@ namespace TeamworkGame
         {
             this.drawHandle = g;
         }
+
         //Methods
         public void Initialize()
         {
@@ -34,8 +35,8 @@ namespace TeamworkGame
             long startTime = Environment.TickCount;
             long aniStartTime = Environment.TickCount;
             int lastPos = Game.Character.Position[0];
-            int steps = 0;
-            Game.LoadScene(0);
+            
+            Game.LoadScene(Game.SceneNumber);
             
 
             Bitmap frame = new Bitmap(Game.GameWidth, Game.GameHeight);
@@ -46,32 +47,61 @@ namespace TeamworkGame
             while(true)
             {
                 
-                gFrame.DrawImage(Game.Background, 0, 0, Game.GameWidth, Game.GameHeight);
                 
-                foreach (var item in Game.Enemies)
+                gFrame.DrawImage(Game.CurrentScene.Background, 0, 0, Game.GameWidth, Game.GameHeight);
+                
+                if (Game.CurrentScene.DeadEnemies.Any())
                 {
-                    gFrame.DrawImage(item.GetAnimation(), item.Position[0], item.Position[1]);
+                    foreach (var item in Game.CurrentScene.DeadEnemies)
+                    {
+                        gFrame.DrawImage(item.GetAnimation(), item.Position[0], item.Position[1]);
+                    }
                 }
+                if (Game.CurrentScene.Enemies.Any())
+                {
+                    foreach (var item in Game.CurrentScene.Enemies)
+                    {
+                        gFrame.DrawImage(item.GetAnimation(), item.Position[0], item.Position[1]);
+                    }
+                    Game.EnemyAI();
+                }
+                
 
-                Game.EnemyAI();
+                
                 foreach (var item in Game.EnemyBullets)
                 {
                     gFrame.DrawImage(item.Image, item.Position[0], item.Position[1]);
                 }
                 
                 
-                if (Game.QuestGiver != null)
+                if (Game.CurrentScene.QuestGiver != null)
                 {
-                    gFrame.DrawImage(Resource1.QuestGiver1,Game.QuestGiver.Position[0],Game.QuestGiver.Position[1]);
+                    gFrame.DrawImage(Game.CurrentScene.QuestGiver.Animation[0], 
+                        Game.CurrentScene.QuestGiver.Position[0], Game.CurrentScene.QuestGiver.Position[1]);
+                    
+                    if (Game.CurrentScene.QuestGiver.Interaction)
+                    {
+                        gFrame.DrawString(Game.CurrentScene.QuestGiver.Quest, new Font(FontFamily.GenericSansSerif, 25, FontStyle.Italic),
+                           new SolidBrush(Color.Gold), Game.CurrentScene.QuestGiver.Position[0],
+                           Game.CurrentScene.QuestGiver.Position[1] - 50);
+                    }
                 }
+
+                if (Game.CurrentScene.Vendor != null)
+                {
+                    gFrame.DrawImage(Game.CurrentScene.Vendor.Animation[0]
+                        ,Game.CurrentScene.Vendor.Position[0],Game.CurrentScene.Vendor.Position[1]);
+                    if (Game.CurrentScene.Vendor.Interaction)
+                    {
+                        gFrame.DrawString("ACTUAL INTERACTION PENDING", new Font(FontFamily.GenericSansSerif, 25, FontStyle.Italic),
+                           new SolidBrush(Color.Gold), Game.CurrentScene.Vendor.Position[0]
+                           , Game.CurrentScene.Vendor.Position[1]);
+                    }
+                }
+                Game.InteractionUpdate();
                 gFrame.DrawImage
                     (Game.Character.GetAnimation(), Game.Character.Position[0], Game.Character.Position[1]);
-                Game.InteractionUpdate();
-                if (Game.QuestGiver.Interaction)
-                {
-                    gFrame.DrawString(Game.QuestGiver.Quest,new Font(FontFamily.GenericSansSerif, 25,FontStyle.Italic),
-                       new SolidBrush(Color.Gold) , Game.QuestGiver.Position[0],Game.QuestGiver.Position[1] -50  );
-                }
+                
                 
                 if (Game.Bullets.Any() || Game.EnemyBullets.Any())
                 {
@@ -81,6 +111,7 @@ namespace TeamworkGame
                         gFrame.DrawImage(item.Image,item.Position[0],item.Position[1]);
                     }
                 }
+                
 
                 gFrame.DrawImage(Game.GetHealthBar(), 10, 10);
                 gFrame.DrawImage(Resource1.Gold1, 176, 1);
@@ -90,14 +121,15 @@ namespace TeamworkGame
 	            {
                     gFrame.DrawImage(Resource1.Inventory, 890, 10);
 	            }
-              
+                Game.SceneUpdate();
                 drawHandle.DrawImage(frame, 0, 0);
                 if (Game.Character.IsDead)
                 {
                     gFrame.DrawImage(Resource1.game_over,Game.GameWidth/2-150,Game.GameHeight/2);
                     break;
                 }
-               
+                
+                Game.EnemyIsDead();
                 
                 //Debug
                 framesRendered++;

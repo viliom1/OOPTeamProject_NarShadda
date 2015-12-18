@@ -19,12 +19,13 @@ namespace TeamworkGame
         //Constructor
 
         public Character( int[] position, int moveSpeed = 5,
-            int health = 500, int attackPower = 30)
+            int health = 500, int attackPower = 10)
         {
             
             this.Position = position;
             this.Health = health;
             this.MoveSpeed = moveSpeed;
+            this.AttackPower = attackPower;
         }
 
 
@@ -36,6 +37,8 @@ namespace TeamworkGame
             { this.animation = value; }
 
         }
+
+        public int AttackPower { get; protected set; }
 
         public int[] Position
         {

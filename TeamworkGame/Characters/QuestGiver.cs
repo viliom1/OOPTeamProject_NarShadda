@@ -3,7 +3,7 @@
 
 namespace TeamworkGame.Characters
 {
-    class QuestGiver : Character
+   public class QuestGiver : Character
     {
         //Fields
         private string name;
@@ -14,6 +14,7 @@ namespace TeamworkGame.Characters
             : base( position, 0, 500, 0)
         {
             this.Interaction = false;
+            this.Animation = animation;
         }
         //Members
         public string Name
