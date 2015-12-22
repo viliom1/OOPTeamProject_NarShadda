@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
 using System.Threading;
+using System.Windows.Forms;
 using TeamworkGame.Characters;
 
 namespace TeamworkGame
@@ -34,13 +35,14 @@ namespace TeamworkGame
         internal static void StartGraphics(Graphics g)
         {
             Enemies = new List<Enemy>();
-            Scenes = new Scene[5];
+            Scenes = new Scene[6];
             Character = new Raynor(new int[]{CharStartpositionX,CharStartPositionY});
             Scenes[0] = Scene.LoadFirstScene();
             Scenes[1] = Scene.LoadSecondScene();
             Scenes[2] = Scene.LoadThirdScene();
             Scenes[3] = Scene.LoadFourthScene();
             Scenes[4] = Scene.LoadFifthScene();
+            Scenes[5] = Scene.loadSixthScene();
             SceneNumber = 0;
             LoadScene(SceneNumber);
             gEngine = new GEngine(g);
@@ -74,6 +76,9 @@ namespace TeamworkGame
                     break;
                 case 4 :
                     CurrentScene = Scenes[4];
+                    break;
+                case 5:
+                    CurrentScene = Scenes[5];
                     break;
 
             }
@@ -183,8 +188,11 @@ namespace TeamworkGame
             else
             {
                 SeeInventory = true;
+               
             }
         }
+
+        
         public static void EnemyIsDead()
         {
             for (int i = 0; i < CurrentScene.Enemies.Count; i++)

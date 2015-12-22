@@ -4,6 +4,7 @@ using System.Threading;
 using System.Drawing;
 using System.Linq;
 using TeamworkGame.Characters;
+using TeamworkGame.Item;
 
 
 namespace TeamworkGame
@@ -57,6 +58,10 @@ namespace TeamworkGame
                         gFrame.DrawImage(item.GetAnimation(), item.Position[0], item.Position[1]);
                     }
                 }
+                if (Game.SceneNumber == 5)
+                {
+                    gFrame.DrawImage(Resource1.Zergling, 1000,400);
+                }
                 if (Game.CurrentScene.Enemies.Any())
                 {
                     foreach (var item in Game.CurrentScene.Enemies)
@@ -81,9 +86,8 @@ namespace TeamworkGame
                     
                     if (Game.CurrentScene.QuestGiver.Interaction)
                     {
-                        gFrame.DrawString(Game.CurrentScene.QuestGiver.Quest, new Font(FontFamily.GenericSansSerif, 25, FontStyle.Italic),
-                           new SolidBrush(Color.Gold), Game.CurrentScene.QuestGiver.Position[0],
-                           Game.CurrentScene.QuestGiver.Position[1] - 50);
+                        gFrame.DrawString(Game.CurrentScene.QuestGiver.Quest, new Font(FontFamily.GenericSansSerif, 20, FontStyle.Italic),
+                           new SolidBrush(Color.Gold), 30, 70);
                     }
                 }
 
@@ -93,9 +97,19 @@ namespace TeamworkGame
                         ,Game.CurrentScene.Vendor.Position[0],Game.CurrentScene.Vendor.Position[1]);
                     if (Game.CurrentScene.Vendor.Interaction)
                     {
-                        gFrame.DrawString("ACTUAL INTERACTION PENDING", new Font(FontFamily.GenericSansSerif, 25, FontStyle.Italic),
-                           new SolidBrush(Color.Gold), Game.CurrentScene.Vendor.Position[0]
-                           , Game.CurrentScene.Vendor.Position[1]);
+                       gFrame.DrawImage(Resource1.EmptyShop, 270, 70);
+                       //gFrame.DrawImage(Resource1.RingOfPower, 200, 50);
+                       // gFrame.DrawImage(Resource1.RingOfPower, 302, 50);
+                       // gFrame.DrawImage(Resource1.AmuletOfRange, 410, 50);
+                       // gFrame.DrawImage(Resource1.AmuletOfRange, 510, 50);
+                       gFrame.DrawImage(Resource1.HealthPotion, 200, 10);
+                       // gFrame.DrawImage(Resource1.HealthPotion, 302, 10);
+                       // gFrame.DrawImage(Resource1.HealthPotion, 410, 10);
+                       // gFrame.DrawImage(Resource1.HealthPotion, 510, 10);
+                       //
+
+
+                        //if(nqkoi item ne e kupen - da go narisuva, else da ne se pokazva)
                     }
                 }
                 Game.InteractionUpdate();
@@ -120,6 +134,40 @@ namespace TeamworkGame
                 if (Game.SeeInventory)
 	            {
                     gFrame.DrawImage(Resource1.Inventory, 890, 10);
+	                int count = 0;
+	                foreach (var item in Game.Character.Inventory)
+	                {
+	                    if (count == 0)
+	                    {
+	                        gFrame.DrawImage(item.Appearence,823,-50);
+	                        count ++;
+	                    }
+                        else if (count == 1)
+                        {
+                            gFrame.DrawImage(item.Appearence,925,-50);
+                            count++;
+                        }
+                        else if (count == 2)
+                        {
+                            gFrame.DrawImage(item.Appearence, 1025,-50);
+                            count++;
+                        }
+                        else if (count == 3)
+                        {
+                            gFrame.DrawImage(item.Appearence,823,30);
+                            count ++;
+                        }
+                        else if (count == 4)
+                        {
+                            gFrame.DrawImage(item.Appearence,925,30);
+                            count++;
+                        }
+                        else if (count == 5)
+                        {
+                            gFrame.DrawImage(item.Appearence,1025,30);
+                        }
+	                }
+                    //foreach item item in inventory ...
 	            }
                 Game.SceneUpdate();
                 drawHandle.DrawImage(frame, 0, 0);

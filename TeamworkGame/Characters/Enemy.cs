@@ -18,10 +18,11 @@ namespace TeamworkGame.Characters
         private bool thirdDead = false;
         private bool fourthDead = false;
         //Constructor
-        public Enemy(int[] position)
-            :base( position,5,10,10)
+        public Enemy(int[] position, int health = 20)
+            :base( position,5,health,10)
         {
-            this.Animation = new Bitmap[2]{ Resource1.FrogMan1,Resource1.FrogMan2 };
+            this.Animation = health >= 100 ? new Bitmap[2] {Resource1.Boss, Resource1.Boss2} : new Bitmap[2] { Resource1.FrogMan1, Resource1.FrogMan2 };
+            
             this.lastAttack = Environment.TickCount;
             this.animationStart = Environment.TickCount;
             this.lastPosition = this.Position[0];

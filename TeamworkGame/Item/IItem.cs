@@ -7,10 +7,12 @@ using System.Threading.Tasks;
 
 namespace TeamworkGame.Item
 {
-    interface IItem
+    public interface IItem
     {
         int Increment { get; set; }
         string Name { get; set; }
         Bitmap Appearence { get; set; }
+        int Price { get; set; }
+        bool IsConsumable { get; set; }
     }
 }

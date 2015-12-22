@@ -29,10 +29,17 @@ namespace TeamworkGame
 
         public static Scene LoadFirstScene()
         {
+            StringBuilder sb = new StringBuilder();
+            sb.AppendLine("Pss-st, hey you...Welcome to StarCraft Adventure. My name is Mysterious Man and I'm here");
+            sb.AppendLine("to help you! I believe I saw some of your friend zerglings being kidnapped by the evil ");
+            sb.AppendLine("Frogman. Your friends are in great danger! Zerglings are the Evil Frogman's favourite snack.");
+            sb.AppendLine("You better run before it's too late for them... Oh, and watch out for his evil minions. They");
+            sb.AppendLine("would do everything to stop you. Be aware of their toxic spit – it can go right trough your");
+            sb.AppendLine("armor and kill you!");
             Scene scene = new Scene();
             scene.QuestGiver = new QuestGiver(new Bitmap[] { Resource1.QuestGiver1 }, new int[] { 600, 350 });
             scene.Background = Resource1.Background;
-            scene.QuestGiver.Quest = "Raynor, sir!";
+            scene.QuestGiver.Quest = sb.ToString();
             return scene;
         }
 
@@ -75,6 +82,14 @@ namespace TeamworkGame
             scene.Enemies.Add(new Enemy(new int[] { 1000, 330 }));
             
             
+            return scene;
+        }
+
+        public static Scene loadSixthScene()
+        {
+            Scene scene = new Scene();
+            scene.Background = Resource1.Background;
+            scene.Enemies.Add(new Enemy(new int[]{1000,320},100));
             return scene;
         }
 

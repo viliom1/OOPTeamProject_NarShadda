@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
+using TeamworkGame.Item;
 
 
 namespace TeamworkGame
@@ -79,11 +80,31 @@ namespace TeamworkGame
                 case "i":
                     Game.ShowInventory();
                     break;
+                case "1":
+                    if (Game.CurrentScene.Vendor != null &&  Game.CurrentScene.Vendor.Interaction == true)
+                    {
+                        if (Game.CurrentScene.Vendor.Inventory[0] !=  null)
+                        {
+                            Game.Character.Buy(Game.CurrentScene.Vendor.Inventory[0]);
+                        }
+                        
+                    }
+                    else if (Game.SeeInventory)
+                    {
+                        if (Game.Character.Inventory[0].IsConsumable)
+                        {
+                            Game.Character.Drink(Game.Character.Inventory[0]);
+                        } 
+                    }
+                    break;
+                   
             }
 
             
 
         }
+
+        public IItem Item { get; set; }
     }
 
         

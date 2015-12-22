@@ -9,7 +9,10 @@ namespace TeamworkGame.Characters
     {
 
         //Fields
-        private IItem[] inventory = new IItem[15]; //the stash of the vendor
+        private IItem[] inventory = new IItem[8]; //the stash of the vendor
+
+        //RingOfPower powerRing = new RingOfPower(10, "MutrasRing", Resource1.RingOfPower, 100);
+        
 
         //Constructor
         public Vendor(Bitmap[] animation, int[] position)
@@ -17,19 +20,23 @@ namespace TeamworkGame.Characters
         {
             this.Animation = animation;
             this.Interaction = false;
+            this.Inventory = new Item.Item[8];
+            this.Inventory[0] = new Item.Item(20, "Health potion",Resource1.HealthPotion,  30, true);
+            this.Inventory[1] = new Item.Item(20, "Health potion", Resource1.HealthPotion, 30, true);
+            this.Inventory[2] = new Item.Item(20, "Health potion", Resource1.HealthPotion, 30, true);
+            this.Inventory[3] = new Item.Item(20, "Health potion", Resource1.HealthPotion, 30, true);
         }
         public bool Interaction { get; private set; }
+        public IItem[] Inventory { get; private set; }
+
 
         // Methods
         public void Buy()
         {
             throw new NotImplementedException();
         }
-        public void Sell()
-        {
-            throw new NotImplementedException();
-        }
 
+        
 
         internal void Interact()
         {

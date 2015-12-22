@@ -65,6 +65,7 @@
     <Compile Include="GEngine.cs" />
     <Compile Include="Item\Bullet.cs" />
     <Compile Include="Item\IItem.cs" />
+    <Compile Include="Item\Item.cs" />
     <Compile Include="Item\RingOfPower.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -188,7 +189,25 @@
     <None Include="Resources\RaynorSquat.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\AmuletOfRange.png" />
+  </ItemGroup>
+  <ItemGroup>
     <None Include="Resources\RingOfPower.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\EmptyShop.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\HealthPotion.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Boss.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Boss2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Zergling.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
 using System.Drawing;
+using System.Linq;
 using TeamworkGame.Item;
 
 
@@ -9,7 +12,7 @@ namespace TeamworkGame.Characters
     {
         //Fields
         private int gold; // hold the current state of gold
-        private IItem[] inventory = new IItem[6];
+        private List<IItem> inventory = new List<IItem>();
         private bool isFirst;
         private long animationStart;
         private int lastPosition;
@@ -29,6 +32,7 @@ namespace TeamworkGame.Characters
             this.animationStart = Environment.TickCount;
             this.lastPosition = this.Position[0];
             this.IsDucking = false;
+            
         }
         //Members
         public int Gold
@@ -43,7 +47,7 @@ namespace TeamworkGame.Characters
                 this.gold = value;
             }
         }
-        
+        public IList<IItem> Inventory { get { return this.inventory; } }
 
         //Methods
         public bool IsColliding()
@@ -85,9 +89,24 @@ namespace TeamworkGame.Characters
         {
             throw new NotImplementedException();
         }
-        public void Drink()
+
+        public void Buy(IItem item)
         {
-            throw new NotImplementedException();
+            if (inventory.Count < 6)
+            {
+                Gold -= item.Price;
+                inventory.Add(item);
+            }
+            
+
+        }
+        public void Drink(IItem item)
+        {
+            if (item.Name == "Health potion")
+            {
+                this.Health += item.Increment;
+                this.Inventory.Remove(item);
+            }
         }
         public void Equip()
         {

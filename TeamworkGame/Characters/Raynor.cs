@@ -12,7 +12,8 @@ namespace TeamworkGame.Characters
         {
             this.Animation = new Bitmap[2] { new Bitmap(Resource1._1), new Bitmap(Resource1._2) };
             this.MoveSpeed = 5;
-            
+            this.Gold = 10000;
+
         }
         //Methods
         public override void  Attack()
